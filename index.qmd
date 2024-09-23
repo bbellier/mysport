@@ -1,11 +1,17 @@
 ---
-title: "mysport"
+title: "SPORT - BENJAMIN BELLIER"
 ---
 
-This is a Quarto website.
+Ceci est mon site web pour résumer ma vision du sport.
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+```{r, include = FALSE}
+
+library(readxl)
+library(kableExtra)
+df_triathlon <- read_excel("links/triathlon.xlsx")
+```
 
 ```{r}
-1 + 1
+
+kable(df_triathlon, caption = "Résultats du triathlon")
 ```

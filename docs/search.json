@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "mysport",
+    "title": "SPORT - BENJAMIN BELLIER",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+    "text": "Ceci est mon site web pour résumer ma vision du sport.\n\nkable(df_triathlon, caption = \"Résultats du triathlon\")\n\n\nRésultats du triathlon\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse\nNom\nt_nat\nall_nat\ntran1\nt_cyc\nall_cyc\ntran2\nt_cap\nall_cap\ntemps_f_min\n\n\n\n\nTriathlon Sud Vendée\nBenjamin\nNA\nNA\nNA\nNA\nNA\nNA\nNA\nNA\nNA"
   },
   {
     "objectID": "about.html",
