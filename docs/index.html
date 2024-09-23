@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -148,9 +182,6 @@ ul.task-list li input[type="checkbox"] {
 <th style="text-align: left;" data-quarto-table-cell-role="th">Date</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Nom</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Type</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Cat</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Classement</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Total</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">Pourc</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">d_nat</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">t_nat</th>
@@ -159,12 +190,10 @@ ul.task-list li input[type="checkbox"] {
 <th style="text-align: right;" data-quarto-table-cell-role="th">d_cyc</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">t_cyc</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">all_cyc</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">rem_cyc</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">tran2</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">d_cap</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">t_cap</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">all_cap</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">rem_cap</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">temps_f_min</th>
 </tr>
 </thead>
@@ -174,29 +203,227 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">2024-09-22</td>
 <td style="text-align: left;">Benjamin</td>
 <td style="text-align: left;">M</td>
-<td style="text-align: left;">S1M</td>
-<td style="text-align: right;">298</td>
-<td style="text-align: right;">379</td>
-<td style="text-align: right;">78.62797</td>
-<td style="text-align: right;">1.2</td>
-<td style="text-align: left;">1899-12-31 00:38:50</td>
-<td style="text-align: left;">1899-12-31 00:03:14</td>
-<td style="text-align: left;">1899-12-31 00:03:28</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: right;">1.20</td>
+<td style="text-align: left;">00:38:50</td>
+<td style="text-align: left;">00:03:14</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">34</td>
-<td style="text-align: left;">1899-12-31 00:58:15</td>
-<td style="text-align: right;">35.02146</td>
-<td style="text-align: right;">126</td>
-<td style="text-align: left;">1899-12-31 00:02:20</td>
+<td style="text-align: left;">00:58:15</td>
+<td style="text-align: right;">35.02</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">7.5</td>
-<td style="text-align: left;">1899-12-31 00:46:49</td>
-<td style="text-align: left;">1899-12-31 00:06:14</td>
-<td style="text-align: left;">-40</td>
-<td style="text-align: left;">1899-12-31 02:29:42</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">02:29:42</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Triathlon Sud Vendée</td>
+<td style="text-align: left;">2024-09-22</td>
+<td style="text-align: left;">Killian</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">1.20</td>
+<td style="text-align: left;">00:23:01</td>
+<td style="text-align: left;">00:01:55</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: left;">01:09:05</td>
+<td style="text-align: right;">29.53</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">7.5</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">02:21:20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Triathlon Sud Vendée</td>
+<td style="text-align: left;">2024-09-22</td>
+<td style="text-align: left;">Bergerie (Valérie, Benoit, Cassandre)</td>
+<td style="text-align: left;">M Team</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">1.20</td>
+<td style="text-align: left;">00:41:59</td>
+<td style="text-align: left;">00:03:29</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: left;">00:59:50</td>
+<td style="text-align: right;">34.09</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">7.5</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">02:44:08</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Triathlon Sud Vendée</td>
+<td style="text-align: left;">2024-09-22</td>
+<td style="text-align: left;">Coralie</td>
+<td style="text-align: left;">S</td>
+<td style="text-align: right;">85</td>
+<td style="text-align: right;">0.75</td>
+<td style="text-align: left;">00:20:51</td>
+<td style="text-align: left;">00:02:46</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: left;">00:39:36</td>
+<td style="text-align: right;">30.30</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">5.0</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">01:36:37</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Triathlon Sud Vendée</td>
+<td style="text-align: left;">2024-09-22</td>
+<td style="text-align: left;">Flavie</td>
+<td style="text-align: left;">S</td>
+<td style="text-align: right;">89</td>
+<td style="text-align: right;">0.75</td>
+<td style="text-align: left;">00:21:19</td>
+<td style="text-align: left;">00:02:50</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: left;">00:40:03</td>
+<td style="text-align: right;">29.96</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">5.0</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">01:40:54</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Triathlon Sud Vendée</td>
+<td style="text-align: left;">2024-09-22</td>
+<td style="text-align: left;">Bergerie (Amory, Patricia, Alanis)</td>
+<td style="text-align: left;">S Team</td>
+<td style="text-align: right;">79</td>
+<td style="text-align: right;">0.75</td>
+<td style="text-align: left;">00:15:39</td>
+<td style="text-align: left;">00:02:05</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: left;">00:41:48</td>
+<td style="text-align: right;">28.71</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">5.0</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">01:34:04</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Triathlon Sud Vendée</td>
+<td style="text-align: left;">2024-09-22</td>
+<td style="text-align: left;">Chelsea</td>
+<td style="text-align: left;">S</td>
+<td style="text-align: right;">91</td>
+<td style="text-align: right;">0.75</td>
+<td style="text-align: left;">00:22:06</td>
+<td style="text-align: left;">00:02:56</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: left;">00:45:25</td>
+<td style="text-align: right;">26.42</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">5.0</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">01:43:33</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Triathlon de Luchon</td>
+<td style="text-align: left;">2024-06-08</td>
+<td style="text-align: left;">Benjamin</td>
+<td style="text-align: left;">L</td>
+<td style="text-align: right;">89</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: left;">00:19:04</td>
+<td style="text-align: left;">00:04:46</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: left;">05:36:00</td>
+<td style="text-align: right;">16.07</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">17.0</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">10:27:05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Triathlon de Luchon</td>
+<td style="text-align: left;">2024-06-08</td>
+<td style="text-align: left;">Bergerie (Patricia, Killian, Coralie)</td>
+<td style="text-align: left;">M Team</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: left;">00:14:36</td>
+<td style="text-align: left;">00:03:39</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: left;">03:40:26</td>
+<td style="text-align: right;">12.79</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">8.5</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">05:23:28</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Triathlon de Luchon</td>
+<td style="text-align: left;">2024-06-08</td>
+<td style="text-align: left;">Benoit</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">76</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: left;">00:17:34</td>
+<td style="text-align: left;">00:04:23</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: left;">02:40:59</td>
+<td style="text-align: right;">17.52</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">8.5</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">05:01:07</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Triathlon de Luchon</td>
+<td style="text-align: left;">2024-06-08</td>
+<td style="text-align: left;">Flavie</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: left;">00:18:27</td>
+<td style="text-align: left;">00:04:36</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: left;">05:16:07</td>
+<td style="text-align: right;">9.11</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">8.5</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 </tr>
 </tbody>
 </table>
 
 
+</div>
+</div>
+<p><br></p>
+<p><br></p>
+<p>Voici le résumé de nos classements :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 

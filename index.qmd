@@ -1,5 +1,7 @@
 ---
 title: "SPORT - BENJAMIN BELLIER"
+editor_options: 
+  chunk_output_type: console
 ---
 
 Ceci est mon site web pour résumer ma vision du sport.
@@ -10,12 +12,66 @@ Voici le résumé de mes derniers triathlons :
 
 library(readxl)
 library(kableExtra)
-df_triathlon <- read_excel("links/triathlon.xlsx")
+library(tidyverse)
+
+df_triathlon <- read_excel("links/triathlon.xlsx") %>%
+  mutate(
+    Pourc = ifelse(is.na(Pourc), NA, 
+                   round(Pourc, 0)),
+    t_nat = ifelse(is.na(t_nat), NA, 
+                   format(as.POSIXct(t_nat, format="%H:%M:%S"), "%H:%M:%S")),
+    all_nat = ifelse(is.na(all_nat), NA,
+                     format(as.POSIXct(all_nat, format="%H:%M:%S"), "%H:%M:%S")),
+    tran1 = ifelse(is.na(tran1), NA, 
+                   format(as.POSIXct(tran1, format="%H:%M:%S"), "%H:%M:%S")),
+    t_cyc = ifelse(is.na(t_cyc), NA, 
+                   format(as.POSIXct(t_cyc, format="%H:%M:%S"), "%H:%M:%S")),
+    all_cyc = ifelse(is.na(all_cyc), NA, 
+                     round(all_cyc, 2)),
+    tran2 = ifelse(is.na(tran2), NA,
+                   format(as.POSIXct(tran2, format="%H:%M:%S"), "%H:%M:%S")),
+    t_cap = ifelse(is.na(t_cap), NA, 
+                   format(as.POSIXct(t_cap, format="%H:%M:%S"), "%H:%M:%S")),
+    all_cap = ifelse(is.na(all_cap), NA, 
+                     format(as.POSIXct(all_cap, format="%H:%M:%S"), "%H:%M:%S")),
+    temps_f_min = ifelse(is.na(as.Date(as.numeric(temps_f_min))), NA, 
+                        format(as.POSIXct(as.Date(as.numeric(temps_f_min)), format="%H:%M:%S"), "%H:%M:%S")),
+    ecart_prem = ifelse(is.na(as.Date(as.numeric(ecart_prem))), NA, 
+                        format(as.POSIXct(as.Date(as.numeric(ecart_prem)), format="%H:%M:%S"), "%H:%M:%S"))
+    )
 ```
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, warning = FALSE}
 
 df_triathlon %>%
+  dplyr::select(-c(Cat, Classement, Total, cl_nat, rem_cyc, cl_cyc, rem_cap, cl_cap, ecart_prem)) %>% 
   kbl(caption = "Résumé de mes triathlons") %>%
   kable_styling() 
+```
+
+<br>
+
+<br>
+
+Voici le résumé de nos classements :
+
+```{r, include = FALSE}
+
+plot <- df_triathlon %>% 
+  filter(!grepl("Team", Type)) %>% 
+  group_by(Nom, Type) %>% 
+  summarise(Pourc = mean(Pourc, na.rm = TRUE), .groups = "drop") %>% 
+  mutate(Type = factor(Type, levels = c("S", "M", "L"))) %>% 
+  ggplot(aes(x = Pourc, y = reorder(Nom, Pourc))) + 
+  geom_col(aes(fill = Type), position = position_dodge()) + 
+  theme_test() + 
+  scale_x_continuous(limits = c(0, 100)) + 
+  labs(x = "Classement (en %)", y = "", Type = "Distance") + 
+  scale_fill_manual(values = c("S" = "#24a69a", "M" = "#faa629", "L" = "#ed4a67")) + 
+  facet_wrap(~Nom, scales = "free")
+```
+
+```{r, echo = TRUE, warning = FALSE, message = FALSE}
+
+plot
 ```
