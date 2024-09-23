@@ -4,6 +4,8 @@ title: "SPORT - BENJAMIN BELLIER"
 
 Ceci est mon site web pour résumer ma vision du sport.
 
+Voici le résumé de mes derniers triathlons :
+
 ```{r, include = FALSE}
 
 library(readxl)
@@ -11,7 +13,9 @@ library(kableExtra)
 df_triathlon <- read_excel("links/triathlon.xlsx")
 ```
 
-```{r}
+```{r, echo = FALSE}
 
-kable(df_triathlon, caption = "Résultats du triathlon")
+df_triathlon %>%
+  kbl(caption = "Résumé de mes triathlons") %>%
+  kable_styling() 
 ```

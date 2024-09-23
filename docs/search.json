@@ -4,13 +4,13 @@
     "href": "index.html",
     "title": "SPORT - BENJAMIN BELLIER",
     "section": "",
-    "text": "Ceci est mon site web pour résumer ma vision du sport.\n\nkable(df_triathlon, caption = \"Résultats du triathlon\")\n\n\nRésultats du triathlon\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse\nNom\nt_nat\nall_nat\ntran1\nt_cyc\nall_cyc\ntran2\nt_cap\nall_cap\ntemps_f_min\n\n\n\n\nTriathlon Sud Vendée\nBenjamin\nNA\nNA\nNA\nNA\nNA\nNA\nNA\nNA\nNA"
+    "text": "Ceci est mon site web pour résumer ma vision du sport.\nVoici le résumé de mes derniers triathlons :\n\n\n\nRésumé de mes triathlons\n\n\nCourse\nDate\nNom\nType\nCat\nClassement\nTotal\nPourc\nd_nat\nt_nat\nall_nat\ntran1\nd_cyc\nt_cyc\nall_cyc\nrem_cyc\ntran2\nd_cap\nt_cap\nall_cap\nrem_cap\ntemps_f_min\n\n\n\n\nTriathlon Sud Vendée\n2024-09-22\nBenjamin\nM\nS1M\n298\n379\n78.62797\n1.2\n1899-12-31 00:38:50\n1899-12-31 00:03:14\n1899-12-31 00:03:28\n34\n1899-12-31 00:58:15\n35.02146\n126\n1899-12-31 00:02:20\n7.5\n1899-12-31 00:46:49\n1899-12-31 00:06:14\n-40\n1899-12-31 02:29:42"
   },
   {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "About this site"
   }
 ]
