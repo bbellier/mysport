@@ -1,12 +1,12 @@
 ---
-title: "SPORT - BENJAMIN BELLIER"
+title: "Les triathlons de La Bergerie"
 editor_options: 
-  chunk_output_type: console
+  chunk_output_type: inline
 ---
 
-Ceci est mon site web pour résumer ma vision du sport.
+Bienvenue sur le site web de la bergerie.
 
-Voici le résumé de mes derniers triathlons :
+Voici le tableau récapitulatif de nos derniers triathlons :
 
 ```{r, include = FALSE}
 
@@ -41,19 +41,22 @@ df_triathlon <- read_excel("links/triathlon.xlsx") %>%
     )
 ```
 
-```{r, echo = FALSE, warning = FALSE}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 
 df_triathlon %>%
-  dplyr::select(-c(Cat, Classement, Total, cl_nat, rem_cyc, cl_cyc, rem_cap, cl_cap, ecart_prem)) %>% 
-  kbl(caption = "Résumé de mes triathlons") %>%
+  dplyr::select(-c(Cat, Classement, Total, cl_nat, rem_cyc, cl_cyc, rem_cap, cl_cap, ecart_prem)) %>%
+  mutate(Type = ifelse(grepl("S", Type), "S",
+                ifelse(grepl("M", Type), "M",
+                ifelse(grepl("L", Type), "L", NA)))) %>% 
+  group_by(Date, Course, Type) %>% summarise(Personne = toString(Nom)) %>% 
+  arrange(desc(Date), Type) %>% 
+  kbl() %>%
   kable_styling() 
 ```
 
 <br>
 
-<br>
-
-Voici le résumé de nos classements :
+Voici un graphique qui résumé nos classements :
 
 ```{r, include = FALSE}
 
@@ -62,16 +65,18 @@ plot <- df_triathlon %>%
   group_by(Nom, Type) %>% 
   summarise(Pourc = mean(Pourc, na.rm = TRUE), .groups = "drop") %>% 
   mutate(Type = factor(Type, levels = c("S", "M", "L"))) %>% 
-  ggplot(aes(x = Pourc, y = reorder(Nom, Pourc))) + 
-  geom_col(aes(fill = Type), position = position_dodge()) + 
+  ggplot(aes(x = Pourc, y = Nom)) + 
+  geom_col(aes(fill = Type), width = 0.5) + 
   theme_test() + 
+  theme(strip.background = element_rect(fill = "white")) +
   scale_x_continuous(limits = c(0, 100)) + 
-  labs(x = "Classement (en %)", y = "", Type = "Distance") + 
+  labs(x = "Classement (en %)", y = "", fill = "Distance") + 
   scale_fill_manual(values = c("S" = "#24a69a", "M" = "#faa629", "L" = "#ed4a67")) + 
-  facet_wrap(~Nom, scales = "free")
+  facet_wrap(~Type) +
+  geom_text(aes(x = 0, y = Nom, label = paste0(Pourc, "%")), hjust = -0.25, size = 3, color = "white")
 ```
 
-```{r, echo = TRUE, warning = FALSE, message = FALSE}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 
-plot
+print(plot)
 ```

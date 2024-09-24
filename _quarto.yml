@@ -3,13 +3,13 @@ project:
   output-dir: docs
 
 website:
-  title: "SPORT"
+  title: "LA BERGERIE"
   navbar:
     left:
       - href: index.qmd
-        text: Home
-      - href: about.qmd
-        text: About
+        text: Présentation générale
+      - href: photo.qmd
+        text: Photographies
 
 format:
   html:
