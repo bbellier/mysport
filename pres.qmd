@@ -22,8 +22,8 @@ df_triathlon <- read_excel("tri/triathlon.xlsx") %>%
   filter(temps_f_min != "DNF") %>% 
   filter(all_cyc != "NA") %>%
   mutate(
-    Pourc = ifelse(is.na(Pourc), NA, 
-                   round(Pourc, 0)),
+    Pourc = ifelse(is.na(as.numeric(Pourc)), NA, 
+                   round(as.numeric(Pourc), 0)),
     t_nat = ifelse(is.na(t_nat), NA, 
                    format(as.POSIXct(t_nat, format="%H:%M:%S"), "%H:%M:%S")),
     all_nat = ifelse(is.na(all_nat), NA,

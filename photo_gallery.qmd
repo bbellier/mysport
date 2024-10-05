@@ -560,6 +560,16 @@ output: html_document
 
 ![](photo/triathlon_de_la_baie_d'armor_2022/1.jpg){group="triathlon_de_la_baie_d'armor_2022" style="display:none"}
 
+## Triathlon de la baie d'Armor 2021
+
+![](photo/triathlon_de_la_baie_d'armor_2021/1.jpg){group="triathlon_de_la_baie_d'armor_2021" width="300px"}
+
+![](photo/triathlon_de_la_baie_d'armor_2021/2.jpg){group="triathlon_de_la_baie_d'armor_2021" style="display:none"}
+
+![](photo/triathlon_de_la_baie_d'armor_2021/1.jpg){group="triathlon_de_la_baie_d'armor_2021" style="display:none"}
+
+![](photo/triathlon_de_la_baie_d'armor_2021/0.jpg){group="triathlon_de_la_baie_d'armor_2021" style="display:none"}
+
 ## Triathlon de l'Ardèche 2021
 
 ![](photo/triathlon_de_l'ardèche_2021/1.jpg){group="triathlon_de_l'ardèche_2021" width="300px"}
@@ -567,6 +577,16 @@ output: html_document
 ![](photo/triathlon_de_l'ardèche_2021/2.jpg){group="triathlon_de_l'ardèche_2021" style="display:none"}
 
 ![](photo/triathlon_de_l'ardèche_2021/1.jpg){group="triathlon_de_l'ardèche_2021" style="display:none"}
+
+## Triathlon de Montreuil Juigné 2019
+
+![](photo/triathlon_de_montreuil_juigné_2019/1.jpg){group="triathlon_de_montreuil_juigné_2019" width="300px"}
+
+![](photo/triathlon_de_montreuil_juigné_2019/2.jpg){group="triathlon_de_montreuil_juigné_2019" style="display:none"}
+
+![](photo/triathlon_de_montreuil_juigné_2019/1.jpg){group="triathlon_de_montreuil_juigné_2019" style="display:none"}
+
+![](photo/triathlon_de_montreuil_juigné_2019/0.jpg){group="triathlon_de_montreuil_juigné_2019" style="display:none"}
 
 ## Triathlon de la base de la Chesnaie 2019
 

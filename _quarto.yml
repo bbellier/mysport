@@ -40,6 +40,8 @@ website:
             href: "Killian.qmd"
           - text: "👩 Patricia"
             href: "Patricia.qmd"
+          - text: "👩 Sonia"
+            href: "Sonia.qmd"
           - text: "👩 Valérie"
             href: "Valérie.qmd"
       - icon: "bi bi-person-raised-hand"
