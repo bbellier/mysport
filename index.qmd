@@ -1,82 +1,124 @@
 ---
-title: "Les triathlons de La Bergerie"
+title: ""
+about:
+  template: jolla
+  links:
+    - icon: instagram
+      text: Instagram
+      href: https://www.instagram.com/la_bergerie_tri/
+    - icon: github
+      text: Github
+      href: https://github.com/bbellier/mysport
 editor_options: 
-  chunk_output_type: inline
+  chunk_output_type: console
 ---
 
-Bienvenue sur le site web de la bergerie.
+![](img/logo/logo_LB_white.jpg){fig-align="center" width="320"}
 
-Voici le tableau récapitulatif de nos derniers triathlons :
+::: {style="text-align: center;"}
+Bienvenue sur le site web de la Bergerie !
+:::
+
+::: {style="text-align: center;"}
+*"Le bélier qui va foncer commence par reculer."*
+:::
 
 ```{r, include = FALSE}
 
 library(readxl)
-library(kableExtra)
 library(tidyverse)
+library(lubridate)
 
-df_triathlon <- read_excel("links/triathlon.xlsx") %>%
+triathlon <- read_excel("tri/triathlon.xlsx", 
+    col_types = c("text", "date", "text", 
+        "text", "text", "numeric", "numeric", 
+        "numeric", "numeric", "numeric", 
+        "date", "text", "date", "numeric", 
+        "text", "numeric", "text", "text", "date", 
+        "numeric", "text", "date", "text", 
+        "text", "date", "text"))
+
+data_exploded <- triathlon %>% 
+  filter(grepl("Team", Type)) %>%
+    mutate(Noms = str_extract(Nom, "\\((.*)\\)"),
+           Noms = str_remove_all(Noms, "[\\(\\)]"),
+           Noms = str_split(Noms, ",\\s*")) %>%
+    unnest(Noms) %>%
+    group_by(Nom) %>%
+    mutate(Position = row_number()) %>%
+    ungroup() %>%
+    mutate(Nom = Noms) %>%
+    dplyr::select(-Noms)
+  
+data_exploded <- data_exploded %>%
+    mutate(across(contains(c("cyc", "cap", "tran2")),
+                  ~ if_else(Position == 1, NA, .),
+                  .names = "{col}")) 
+  
+  data_exploded <- data_exploded %>%
+    mutate(across(contains(c("nat", "cap")),
+                  ~ if_else(Position == 2, NA, .),
+                  .names = "{col}"))
+  
+  data_exploded <- data_exploded %>%
+    mutate(across(contains(c("nat", "cyc", "tran1")),
+                  ~ if_else(Position == 3, NA, .),
+                  .names = "{col}"))
+  
+  data_exploded <- data_exploded %>%
+    dplyr::select(-Position)
+  
+  triathlon <- triathlon %>%
+    filter(!grepl("Team", Type)) %>%
+    rbind(data_exploded) 
+  
+  triathlon <- triathlon %>% 
+    filter(Nom != "Antoine") %>% 
+    filter(Nom != "Mathis")
+    
+triathlon_cleaned <- triathlon %>%
   mutate(
-    Pourc = ifelse(is.na(Pourc), NA, 
-                   round(Pourc, 0)),
-    t_nat = ifelse(is.na(t_nat), NA, 
-                   format(as.POSIXct(t_nat, format="%H:%M:%S"), "%H:%M:%S")),
-    all_nat = ifelse(is.na(all_nat), NA,
-                     format(as.POSIXct(all_nat, format="%H:%M:%S"), "%H:%M:%S")),
-    tran1 = ifelse(is.na(tran1), NA, 
-                   format(as.POSIXct(tran1, format="%H:%M:%S"), "%H:%M:%S")),
-    t_cyc = ifelse(is.na(t_cyc), NA, 
-                   format(as.POSIXct(t_cyc, format="%H:%M:%S"), "%H:%M:%S")),
-    all_cyc = ifelse(is.na(all_cyc), NA, 
-                     round(all_cyc, 2)),
-    tran2 = ifelse(is.na(tran2), NA,
-                   format(as.POSIXct(tran2, format="%H:%M:%S"), "%H:%M:%S")),
-    t_cap = ifelse(is.na(t_cap), NA, 
-                   format(as.POSIXct(t_cap, format="%H:%M:%S"), "%H:%M:%S")),
-    all_cap = ifelse(is.na(all_cap), NA, 
-                     format(as.POSIXct(all_cap, format="%H:%M:%S"), "%H:%M:%S")),
-    temps_f_min = ifelse(is.na(as.Date(as.numeric(temps_f_min))), NA, 
-                        format(as.POSIXct(as.Date(as.numeric(temps_f_min)), format="%H:%M:%S"), "%H:%M:%S")),
-    ecart_prem = ifelse(is.na(as.Date(as.numeric(ecart_prem))), NA, 
-                        format(as.POSIXct(as.Date(as.numeric(ecart_prem)), format="%H:%M:%S"), "%H:%M:%S"))
-    )
+    across(where(is.POSIXct), ~ format(.x, "%H:%M:%S"))  # Format all datetime columns to "H:M:S"
+  )
+
 ```
 
-```{r, echo = FALSE, warning = FALSE, message = FALSE}
+::: {style="text-align: center;"}
+<h1 style="font-size: 100px; font-weight: bold; margin: 0;">
 
-df_triathlon %>%
-  dplyr::select(-c(Cat, Classement, Total, cl_nat, rem_cyc, cl_cyc, rem_cap, cl_cap, ecart_prem)) %>%
-  mutate(Type = ifelse(grepl("S", Type), "S",
-                ifelse(grepl("M", Type), "M",
-                ifelse(grepl("L", Type), "L", NA)))) %>% 
-  group_by(Date, Course, Type) %>% summarise(Personne = toString(Nom)) %>% 
-  arrange(desc(Date), Type) %>% 
-  kbl() %>%
-  kable_styling() 
-```
+`r length(unique(paste0(triathlon$Course, "_", triathlon$Date)))`
 
-<br>
+</h1>
 
-Voici un graphique qui résumé nos classements :
+<p>Nombre de triathlons</p>
+:::
 
-```{r, include = FALSE}
+::: {style="text-align: center; margin-top: 20px;"}
+<h1 style="font-size: 80px; font-weight: bold; margin: 0;">
 
-plot <- df_triathlon %>% 
-  filter(!grepl("Team", Type)) %>% 
-  group_by(Nom, Type) %>% 
-  summarise(Pourc = mean(Pourc, na.rm = TRUE), .groups = "drop") %>% 
-  mutate(Type = factor(Type, levels = c("S", "M", "L"))) %>% 
-  ggplot(aes(x = Pourc, y = Nom)) + 
-  geom_col(aes(fill = Type), width = 0.5) + 
-  theme_test() + 
-  theme(strip.background = element_rect(fill = "white")) +
-  scale_x_continuous(limits = c(0, 100)) + 
-  labs(x = "Classement (en %)", y = "", fill = "Distance") + 
-  scale_fill_manual(values = c("S" = "#24a69a", "M" = "#faa629", "L" = "#ed4a67")) + 
-  facet_wrap(~Type) +
-  geom_text(aes(x = 0, y = Nom, label = paste0(Pourc, "%")), hjust = -0.25, size = 3, color = "white")
-```
+`r format(min(triathlon$all_nat, na.rm = TRUE), "%M:%S")`
 
-```{r, echo = FALSE, warning = FALSE, message = FALSE}
+</h1>
 
-print(plot)
-```
+<p>Temps natation le plus rapide</p>
+:::
+
+::: {style="text-align: center; margin-top: 20px;"}
+<h1 style="font-size: 80px; font-weight: bold; margin: 0;">
+
+`r round(max(as.numeric(triathlon$all_cyc), na.rm = TRUE), 2)`
+
+</h1>
+
+<p>Temps vélo le plus rapide</p>
+:::
+
+::: {style="text-align: center; margin-top: 20px;"}
+<h1 style="font-size: 80px; font-weight: bold; margin: 0;">
+
+`r format(min(triathlon$all_cap, na.rm = TRUE), "%M:%S")`
+
+</h1>
+
+<p>Temps cap le plus rapide</p>
+:::

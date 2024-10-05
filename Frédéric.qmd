@@ -1,0 +1,8 @@
+  
+---
+title: Frédéric (nd)
+image: 'img/profil_photo//frédéric.jpg'
+toc: false
+about:
+  template: jolla
+---

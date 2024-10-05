@@ -1,0 +1,7 @@
+---
+title: Teddy
+image: 'img/profil_photo//teddy.jpg'
+toc: false
+about:
+  template: jolla
+---

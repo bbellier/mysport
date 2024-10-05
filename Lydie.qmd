@@ -1,0 +1,8 @@
+  
+---
+title: Lydie (nd)
+image: 'img/profil_photo//lydie.jpg'
+toc: false
+about:
+  template: jolla
+---

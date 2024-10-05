@@ -3,13 +3,63 @@ project:
   output-dir: docs
 
 website:
+  favicon: "img/logo/logo_LB_black.png"
   title: "LA BERGERIE"
   navbar:
     left:
       - href: index.qmd
-        text: Présentation générale
-      - href: photo.qmd
-        text: Photographies
+        text: "🐏 La Bergerie"
+      - href: pres.qmd
+        text: "📈 Présentation générale"
+      - href: photo_gallery.qmd
+        text: "📸 Photographies"
+    tools:
+      - icon: "bi bi-person-arms-up"
+        menu:
+          - text: "👩 Alanis"
+            href: "Alanis.qmd"
+          - text: "👨 Alexandre"
+            href: "Alexandre.qmd"
+          - text: "👨 Amory"
+            href: "Amory.qmd"
+          - text: "👨 Benjamin"
+            href: "Benjamin.qmd"
+          - text: "👨 Benoit"
+            href: "Benoit.qmd"
+          - text: "👩 Cassandre"
+            href: "Cassandre.qmd"
+          - text: "👩 Chelsea"
+            href: "Chelsea.qmd"
+          - text: "👩 Coralie"
+            href: "Coralie.qmd"
+          - text: "👩 Flavie"
+            href: "Flavie.qmd"
+          - text: "👨 Killian"
+            href: "Killian.qmd"
+          - text: "👩 Patricia"
+            href: "Patricia.qmd"
+          - text: "👩 Valérie"
+            href: "Valérie.qmd"
+      - icon: "bi bi-person-raised-hand"
+        menu:
+          - text: "👨 Christophe"
+            href: "Christophe.qmd"
+          - text: "👨 Frédéric"
+            href: "Frédéric.qmd"
+          - text: "👨 Gilles"
+            href: "Gilles.qmd"
+          - text: "👩 Lydie"
+            href: "Lydie.qmd"
+          - text: "👩 Sandra"
+            href: "Sandra.qmd"
+      - icon: "bi bi-bug-fill"
+        menu:
+          - text: "Mia"
+            href: "Mia.qmd"
+          - text: "Hajime"
+            href: "Hajime.qmd"
+          - text: "Teddy"
+            href: "Teddy.qmd"
 
 format:
   html:
@@ -18,4 +68,3 @@ format:
     toc: true
 
 editor: visual
-

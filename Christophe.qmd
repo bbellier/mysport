@@ -1,0 +1,8 @@
+  
+---
+title: Christophe (nd)
+image: 'img/profil_photo//christophe.jpg'
+toc: false
+about:
+  template: jolla
+---

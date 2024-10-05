@@ -1,0 +1,7 @@
+---
+title: Teddy
+image: 'img/profil_photo//hajime.jpg'
+toc: false
+about:
+  template: jolla
+---

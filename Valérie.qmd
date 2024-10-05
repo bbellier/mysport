@@ -1,0 +1,44 @@
+  
+---
+title: Valérie (La loutre d'eau douce)
+subtitle: nd 
+image: 'img/profil_photo//valérie.jpg'
+toc: false
+about:
+  template: trestles
+  
+---
+
+## Performance de Valérie
+
+```{r, include = FALSE}
+# Charger le script externe contenant l'analyse
+source('C:/Users/bbell/Desktop/mysport/function_profil_stat.R')
+
+# Exécuter l'analyse pour Valérie
+name <- 'Valérie'
+result <- triathlon_analysis(name)
+```
+
+-   **Nombre de triathlons** : `r name_print_df$numb_tri`
+
+-   **Premier triathlon** : `r name_print_df$first_tri`
+
+-   **Dernier triathlon** : `r name_print_df$last_tri`
+
+-   **Plus long triathlon** : `r name_print_df$max_cat_tri`
+
+-   **Meilleur performance** : `r name_print_df$best_class`
+
+-   **BD en natation** : `r name_print_df$max_nat`
+
+-   **PR en natation** : `r name_print_df$best_nat` 
+
+-   **BD parcourue en cyclisme** : `r name_print_df$max_cyc`
+
+-   **PR en cyclisme** : `r name_print_df$best_cyc`
+
+-   **BD en course à pied** : `r name_print_df$max_cap` 
+
+-   **PR en course à pied** : `r name_print_df$best_cap` 
+
