@@ -1,25 +1,25 @@
   
 ---
-title: Coralie (Le coq)
-subtitle: Ils ont réussi car ils ne savaient pas que c'était impossible. 
-image: 'img/profil_photo//coralie.jpg'
+title: Damien (nd)
+subtitle: nd 
+image: 'img/profil_photo//damien.jpg'
 toc: false
 about:
   template: trestles
   links:
   - icon: 'bi bi-strava'
     text: Strava
-    href: 'https://www.strava.com/athletes/126506004?oq=coral'
+    href: 'https://www.strava.com/athletes/3605127?oq=dam'
 ---
 
-## Performance de Coralie
+## Performance de Damien
 
 ```{r, include = FALSE}
 # Charger le script externe contenant l'analyse
 source('C:/Users/bbell/Desktop/mysport/function_profil_stat.R')
 
-# Exécuter l'analyse pour Coralie
-name <- 'Coralie'
+# Exécuter l'analyse pour Damien
+name <- 'Damien'
 result <- triathlon_analysis(name)
 ```
 
