@@ -1,5 +1,5 @@
 ---
-title: Teddy
+title: Hajime
 image: 'img/profil_photo//hajime.jpg'
 toc: false
 about:

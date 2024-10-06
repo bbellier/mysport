@@ -66,17 +66,24 @@ triathlon_analysis <- function(name) {
   
   best_class <- round(min(name_df$Pourc, na.rm = TRUE), 0)
   max_nat <- max(name_df$d_nat, na.rm = TRUE)
-  
+  mean_nat <- paste(format(as.POSIXct(mean(name_df$all_nat, na.rm = TRUE), format = '%Y-%m-%d %H:%M:%S'), '%M'), 
+                    'min et', 
+                    format(as.POSIXct(mean(name_df$all_nat, na.rm = TRUE), format = '%Y-%m-%d %H:%M:%S'), '%S'), 
+                    'sec')
   best_nat <- paste(format(as.POSIXct(min(name_df$all_nat, na.rm = TRUE), format = '%Y-%m-%d %H:%M:%S'), '%M'), 
                     'min et', 
                     format(as.POSIXct(min(name_df$all_nat, na.rm = TRUE), format = '%Y-%m-%d %H:%M:%S'), '%S'), 
                     'sec')
   
   max_cyc <- max(name_df$d_cyc, na.rm = TRUE)
+  mean_cyc <- round(mean(name_df$all_cyc, na.rm = TRUE), 2)
   best_cyc <- round(max(name_df$all_cyc, na.rm = TRUE), 2)
   
   max_cap <- max(name_df$d_cap, na.rm = TRUE)
-  
+  mean_cap <- paste(format(as.POSIXct(mean(name_df$all_cap, na.rm = TRUE), format = '%Y-%m-%d %H:%M:%S'), '%M'), 
+                    'min et', 
+                    format(as.POSIXct(mean(name_df$all_cap, na.rm = TRUE), format = '%Y-%m-%d %H:%M:%S'), '%S'), 
+                    'sec')
   best_cap <- paste(format(as.POSIXct(min(name_df$all_cap, na.rm = TRUE), format = '%Y-%m-%d %H:%M:%S'), '%M'), 
                     'min et', 
                     format(as.POSIXct(min(name_df$all_cap, na.rm = TRUE), format = '%Y-%m-%d %H:%M:%S'), '%S'), 
@@ -87,14 +94,21 @@ triathlon_analysis <- function(name) {
     first_tri = ifelse(is.na(first_tri), NA, first_tri),
     last_tri = ifelse(is.na(last_tri), NA, last_tri),
     max_cat_tri = ifelse(is.na(max_cat_tri), NA, max_cat_tri),
-    best_class = ifelse(is.na(best_class), NA, paste0(best_class, " %")),
-    max_nat = ifelse(grepl("Inf", max_nat), NA, paste0(max_nat, " km")),
-    best_nat = ifelse(grepl("Inf", best_nat), NA, paste0(best_nat, " / 100m")),
-    max_cyc = ifelse(grepl("Inf", max_cyc), NA, paste0(max_cyc, " km")),
-    best_cyc = ifelse(grepl("Inf", best_cyc), NA, paste0(best_cyc, " km/h")),
-    max_cap = ifelse(grepl("Inf", max_cap), NA, paste0(max_cap, " km")),
-    best_cap = ifelse(grepl("Inf", best_cap), NA, paste0(best_cap, " / km"))
-  )
+    best_class = ifelse(grepl("Inf", best_class), "-", paste0(best_class, " %")),
+    max_nat = ifelse(grepl("Inf", max_nat), "-", paste0(max_nat, " km")),
+    mean_nat = ifelse(grepl("Inf", mean_nat), "-", paste0(mean_nat, " / 100m")),
+    best_nat = ifelse(grepl("Inf", best_nat), "-", paste0(best_nat, " / 100m")),
+    max_cyc = ifelse(grepl("Inf", max_cyc), "-", paste0(max_cyc, " km")),
+    mean_cyc = ifelse(grepl("Inf", mean_cyc), "-", paste0(mean_cyc, " km/h")),
+    best_cyc = ifelse(grepl("Inf", best_cyc), "-", paste0(best_cyc, " km/h")),
+    max_cap = ifelse(grepl("Inf", max_cap), "-", paste0(max_cap, " km")),
+    mean_cap = ifelse(grepl("Inf", mean_cap), "-", paste0(mean_cap, " / km")),
+    best_cap = ifelse(grepl("Inf", best_cap), "-", paste0(best_cap, " / km"))
+  ) %>% 
+    mutate(mean_nat = ifelse(grepl("NaN", mean_nat), "-", mean_nat),
+           mean_cyc = ifelse(grepl("NaN", mean_cyc), "-", mean_cyc),
+           mean_cap = ifelse(grepl("NaN", mean_cap), "-", mean_cap)
+           )
   
   assign("name_print_df", name_print_df, envir = .GlobalEnv)
   

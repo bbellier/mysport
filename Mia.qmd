@@ -1,5 +1,5 @@
 ---
-title: Teddy
+title: Mia
 image: 'img/profil_photo//mia.jpg'
 toc: false
 about:

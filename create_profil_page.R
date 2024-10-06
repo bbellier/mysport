@@ -64,13 +64,19 @@ result <- triathlon_analysis(name)
 
 -   **BD en natation** : `r name_print_df$max_nat`
 
+-   **MR en natation** : `r name_print_df$mean_nat` 
+
 -   **PR en natation** : `r name_print_df$best_nat` 
 
 -   **BD parcourue en cyclisme** : `r name_print_df$max_cyc`
 
+-   **MR en cyclisme** : `r name_print_df$mean_cyc`
+
 -   **PR en cyclisme** : `r name_print_df$best_cyc`
 
 -   **BD en course à pied** : `r name_print_df$max_cap` 
+
+-   **MR en course à pied** : `r name_print_df$mean_cap` 
 
 -   **PR en course à pied** : `r name_print_df$best_cap` 
 

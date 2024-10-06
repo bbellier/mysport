@@ -64,6 +64,8 @@ website:
             href: "Hajime.qmd"
           - text: "Teddy"
             href: "Teddy.qmd"
+          - text: "Hacker"
+            href: "Hacker.qmd"
 
 format:
   html:

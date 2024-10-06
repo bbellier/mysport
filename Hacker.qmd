@@ -1,0 +1,7 @@
+---
+title: Hacker
+image: 'img/profil_photo//hacker.jpg'
+toc: false
+about:
+  template: jolla
+---
